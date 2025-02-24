@@ -23,7 +23,7 @@ jobs:
           outputs: |
             github-snake.svg
             github-snake-dark.svg?palette=github-dark
-            github-snake.svg?color_snake=orange&color_dots=#c4b4ff,#a684ff,#7f22fe,#5d0ec0,#2f0d68
+            github-snake.svg?color_snake=darkblue&color_dots=#c4bfff,#a684ff,#7f22fe,#5d0ec0,#2f0d68
 
       - name: Verificar arquivos gerados
         run: ls -lah
