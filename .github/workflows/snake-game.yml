@@ -23,14 +23,15 @@ jobs:
             dist/github-snake-dark.svg?palette=github-dark
             dist/ocean.gif?color_snake=orange&color_dots=#c4b4ff,#a684ff,#7f22fe,#5d0ec0,#2f0d68
       
+      - name: Move generated file to dist/
+        run: |
+          mkdir -p dist
+          mv github-snake.svg dist/
+
       - name: Commit and push the generated Snake Game to the repository
         run: |
           git config --local user.name "GitHub Actions"
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
-
-          mkdir -p dist
-          mv github-snake.svg dist/
-
           git add dist/github-snake.svg
           git commit -m "Add generated snake game GIF"
           git push
