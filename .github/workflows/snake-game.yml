@@ -1,0 +1,32 @@
+name: Generate Snake Game from Contributions
+
+on:
+  push:
+    branches:
+      - main  
+  schedule:
+    - cron: '0 0 * * *'  # Executa a cada dia à meia-noite
+
+jobs:
+  generate-snake:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Generate Snake Game
+        uses: Platane/snk@v3
+        with:
+          github_user_name: ${{ github.repository_owner }}
+          outputs: |
+            dist/github-snake.svg
+            dist/github-snake-dark.svg?palette=github-dark
+            dist/ocean.gif?color_snake=orange&color_dots=#c4b4ff,#a684ff,#7f22fe,#5d0ec0,#2f0d68
+      
+      - name: Commit and push the generated Snake Game to the repository
+        run: |
+          git config --local user.name "GitHub Actions"
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git add dist/github-snake.svg
+          git commit -m "Add generated snake game GIF"
+          git push
